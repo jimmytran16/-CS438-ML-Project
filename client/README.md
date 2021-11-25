@@ -5,7 +5,7 @@ This is the frontend for the Machine Learning project
 ## Set up environment
 - Install Node.js into your computer  https://nodejs.org/en/download/
 
-- Install all required dependencies into react project (Make sure you are inside the /frontend directory)
+- Install all required dependencies into react project (Make sure you are inside the /client directory)
 ```bash
   npm install
 ```
