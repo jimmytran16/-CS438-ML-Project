@@ -135,6 +135,30 @@ def seperate_alpha_num(text):
     return " ".join(words)
 
 '''
+    Count repeating characters
+'''
+def cont_rep_char(text):
+    tchr = text.group(0) 
+    if len(tchr) > 1:
+        return tchr[0:2]
+
+'''
+    Unique characters
+'''
+
+def unique_char(rep, text):
+    substitute = re.sub(r'(\w)\1+', rep, text)
+    return substitute
+
+'''
+    substitute character
+'''
+
+def char(text):
+    substitute = re.sub(r'[^a-zA-Z]',' ',text)
+    return substitute
+
+'''
     Load data
 '''
 
