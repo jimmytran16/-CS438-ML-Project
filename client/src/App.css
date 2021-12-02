@@ -1,3 +1,27 @@
+body {
+  background-color: #8BA8B7;
+}
+
 .title {
   text-align: center;
+}
+
+.box__wrapper {
+  border-radius: 50px;
+  background-color: white;
+  margin: 20px;
+}
+
+.graph__wrapper {
+  background-color: rgb(197, 197, 197);
+  border-radius: 50px;
+  margin: 80px;
+}
+
+@media screen and (max-width:610px) {
+  .graph__wrapper {
+    background-color: rgb(197, 197, 197);
+    border-radius: 50px;
+    margin: 15px;
+  }
 }

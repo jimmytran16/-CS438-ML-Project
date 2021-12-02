@@ -19,7 +19,7 @@ ChartJS.register(
   );
 export default function SentimentalBarChart({ data, options }) {
     return (
-        <div style={{ padding: 20 }}>
+        <div style={{ padding: 20, minHeight: 500 }}>
             <Bar options={options} data={data} />
         </div>
     )

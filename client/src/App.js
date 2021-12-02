@@ -13,12 +13,13 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       axios.get(`https://enigmatic-hollows-91721.herokuapp.com/`)
+      // axios.get(`http://localhost:5000/`)
         .then(res => {
           console.log(res.data)
           setData(res.data)
           setIsLoading(false)
         })
-        .catch(err => console.log(err)) 
+        .catch(err => console.log(err))
     }, 1000)
   }, [])
 
@@ -30,36 +31,45 @@ function App() {
           <Navbar.Brand href="#home">Airlines Sentimental Tweet Analysis</Navbar.Brand>
         </Container>
       </Navbar>
-      <Row>
-        <Col xs={12} md={6}>
-          <Container>
-            {
-              (isLoading)
-                ? <p>Loading.... </p>
-                : <SentimentalDoughnutChart data={data.sentimental.data} options={data.sentimental.options} />
-            }
-          </Container>
-        </Col>
-        <Col xs={12} md={6}>
-        <Container>
-            {
-              (isLoading)
-                ? <p>Loading.... </p>
-                : <SentimentalBarChart data={data.sentimental.data} options={data.sentimental.options} />
-            }
-          </Container>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-        <Container>
-            {
-              (isLoading)
-                ? <p>Loading.... </p>
-                : <SentimentalBarChart data={data.airlines.data} options={data.airlines.options} />
-            }
-          </Container></Col>
-      </Row>
+      <div className="graph__wrapper">
+        <Row>
+          <Col xs={12} md={6}>
+            <div className="box__wrapper">
+              <Container style={{ minHeight: '100%' }}>
+                {
+                  (isLoading)
+                    ? <p>Loading.... </p>
+                    : <SentimentalDoughnutChart data={data.sentimental.data} options={data.sentimental.optionsDoughnut} />
+                }
+              </Container>
+            </div>
+          </Col>
+          <Col xs={12} md={6}>
+            <div className="box__wrapper">
+              <Container style={{ minHeight: '100%' }}>
+                {
+                  (isLoading)
+                    ? <p>Loading.... </p>
+                    : <SentimentalBarChart data={data.sentimental.data} options={data.sentimental.optionsBar} />
+                }
+              </Container>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="box__wrapper">
+              <Container style={{ minHeight: '100%' }}>
+                {
+                  (isLoading)
+                    ? <p>Loading.... </p>
+                    : <SentimentalBarChart data={data.airlines.data} options={data.airlines.options} />
+                }
+              </Container>
+            </div>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 }

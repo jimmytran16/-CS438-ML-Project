@@ -2,6 +2,8 @@ import os.path
 import pandas as pd
 
 # Class that will parse and return data from excel
+
+
 class Loader:
     def __init__(self):
         pass
@@ -23,8 +25,17 @@ class Loader:
                 neut += 1
 
         return {
-            "options": {
-                "type": 'bar',
+            "optionsBar": {
+                "responsive": True,
+                "maintainAspectRatio": False,
+                "plugins": {
+                    "title": {
+                        "display": True,
+                        "text": 'Airlines Sentimental Analysis'
+                    }
+                }
+            },
+            "optionsDoughnut": {
                 "plugins": {
                     "title": {
                         "display": True,
@@ -87,6 +98,7 @@ class Loader:
             },
             "options": {
                 "responsive": True,
+                "maintainAspectRatio": False,
                 "plugins": {
                     "legend": {
                         "position": 'top',
