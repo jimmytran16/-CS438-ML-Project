@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      axios.get(`http://localhost:5000/`)
+      axios.get(`https://enigmatic-hollows-91721.herokuapp.com/`)
         .then(res => {
           console.log(res.data)
           setData(res.data)
@@ -41,18 +41,7 @@ function App() {
           </Container>
         </Col>
         <Col xs={12} md={6}>
-          <Container>
-            {
-              (isLoading)
-                ? <p>Loading.... </p>
-                : <SentimentalDoughnutChart data={data.sentimental.data} options={data.sentimental.options} />
-            }
-          </Container>
-        </Col>
-      </Row>
-      <Row>
-      <Col >
-          <Container>
+        <Container>
             {
               (isLoading)
                 ? <p>Loading.... </p>
