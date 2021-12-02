@@ -29,6 +29,15 @@ import warnings
 
 import os
 
+def convert_Sentiment(sentiment):
+    if sentiment == "positive":
+        return 2
+    elif sentiment == "neutral":
+        return 1
+    elif sentiment == "negative":
+        return 0
+    
+
 df = pd.read_csv('data/Tweets.csv')
 cprint("This is the dataset: \n",'green')
 print(df.head())
@@ -48,3 +57,11 @@ print(df.groupby('airline')['airline_sentiment'].count())
 
 cprint('\nReasons Of Negative Tweets :','green')
 print(df.negativereason.value_counts())
+
+positive = df[df['airline_sentiment'] == 'positive'].text
+neutral = df[df['airline_sentiment'] == 'neutral'].text
+negative = df[df['airline_sentiment'] == 'negative'].text
+
+df.airline_sentiment = df.airline_sentiment.apply(lambda x : convert_Sentiment(x))
+print(df.airline_sentiment)
+
