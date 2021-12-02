@@ -127,7 +127,7 @@ def remove_emoji(text):
     return text  
 
 '''
-    Seperate alphanumberic
+   Seperate alphanumberic textual data
 '''
 def seperate_alpha_num(text):
     temp = text
