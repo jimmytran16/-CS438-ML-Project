@@ -1,13 +1,13 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, LinearScale, Title } from 'chart.js';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, LinearScale, Title);
 
-export default function SentimentalDoughnutChart({ data }) {
+export default function SentimentalDoughnutChart({ data, options }) {
     return (
         <div style={{ padding: 20 }}>
-            <Doughnut data={data} />
+            <Doughnut data={data} options={options} />
         </div>
     )
 }
