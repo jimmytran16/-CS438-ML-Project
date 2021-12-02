@@ -45,10 +45,20 @@ function App() {
             {
               (isLoading)
                 ? <p>Loading.... </p>
-                : <SentimentalBarChart data={data.airlines.data} options={data.airlines.options} />
+                : <SentimentalBarChart data={data.sentimental.data} options={data.sentimental.options} />
             }
           </Container>
         </Col>
+      </Row>
+      <Row>
+        <Col>
+        <Container>
+            {
+              (isLoading)
+                ? <p>Loading.... </p>
+                : <SentimentalBarChart data={data.airlines.data} options={data.airlines.options} />
+            }
+          </Container></Col>
       </Row>
     </div>
   );

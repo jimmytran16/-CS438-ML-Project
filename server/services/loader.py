@@ -36,7 +36,7 @@ class Loader:
                 "labels": ['Positive', 'Neutral', 'Negative'],
                 "datasets": [
                     {
-                        "label": '# of Votes',
+                        "label": 'Total',
                         "data": [pos, neut, neg],
                         "backgroundColor": [
                             'rgba(40, 158, 81, 0.8)',
