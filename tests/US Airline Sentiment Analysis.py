@@ -20,7 +20,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import classification_report , confusion_matrix , accuracy_score # Performance Metrics  
 
 
-''' Data Visualization '''
+# Data Visualization 
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from termcolor import cprint
@@ -28,14 +28,6 @@ import seaborn as sns
 import warnings   
 
 import os
-
-
-'''
-    Give a number to tweets for classification
-    0 - Negative
-    1 - Neutral
-    2 - Positive
-'''
 
 def convert_Sentiment(sentiment):
     if sentiment == "positive":
@@ -48,7 +40,6 @@ def convert_Sentiment(sentiment):
 '''
     Remove URLs
 '''
-
 def remove_URLs(tweetData):
     url = re.complie(r'https?://\S+|www\.\S+')
     return url.sub(r'',tweetData)
@@ -161,20 +152,21 @@ def char(text):
 '''
     Load data
 '''
-
 df = pd.read_csv('data/Tweets.csv')
-cprint("\nThis is the dataset: \n",'green')
+cprint("This is the dataset: \n",'green')
 print(df.head())
-cprint("\nShape of the data: ",'red')
+cprint("\nShape of the data: ",'green')
 print(df.shape)
 
-'''
-    Understanding the dataset
-'''
 cprint("\nTotal number of null values in the dataset: ", 'green')
 print(df.isnull().sum())
 
-cprint("\nTotal number of tweets for each airline :",'red')
+##print(df.airline_sentiment.value_counts()[0])  ## for negative
+##print(df.airline_sentiment.value_counts()[1])  ## for neutral
+##print(df.airline_sentiment.value_counts()[2])  ## for positive
+
+
+cprint("\nTotal number of tweets for each airline :",'green')
 print(df.groupby('airline')['airline_sentiment'].count())
 
 cprint('\nReasons Of Negative Tweets :','green')
@@ -185,8 +177,5 @@ neutral = df[df['airline_sentiment'] == 'neutral'].text
 negative = df[df['airline_sentiment'] == 'negative'].text
 
 df.airline_sentiment = df.airline_sentiment.apply(lambda x : convert_Sentiment(x))
-
-NR_count = df.negativereason.value_counts()
-
-
+print(df.airline_sentiment)
 
