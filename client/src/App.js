@@ -28,7 +28,7 @@ function App() {
     <div>
       <Navbar bg="light">
         <Container>
-          <Navbar.Brand href="#home">Airlines Sentimental Tweet Analysis</Navbar.Brand>
+          <Navbar.Brand href="#home">Airlines Sentimental Tweets Analysis</Navbar.Brand>
         </Container>
       </Navbar>
       <div className="graph__wrapper">
