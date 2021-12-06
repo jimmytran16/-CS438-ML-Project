@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Navbar, Row, Col } from 'react-bootstrap';
+import { Container, Navbar, Row, Col, Spinner } from 'react-bootstrap';
 import SentimentalDoughnutChart from './components/SentimentalDoughnutChart';
 import SentimentalBarChart from './components/SentimentalBarChart';
+import SentimentalSpinner from './components/SentimentalSpinner';
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -38,7 +39,7 @@ function App() {
               <Container style={{ minHeight: '100%' }}>
                 {
                   (isLoading)
-                    ? <p>Loading.... </p>
+                    ? <SentimentalSpinner />
                     : <SentimentalDoughnutChart data={data.sentimental.data} options={data.sentimental.optionsDoughnut} />
                 }
               </Container>
@@ -49,7 +50,7 @@ function App() {
               <Container style={{ minHeight: '100%' }}>
                 {
                   (isLoading)
-                    ? <p>Loading.... </p>
+                    ? <SentimentalSpinner />
                     : <SentimentalBarChart data={data.sentimental.data} options={data.sentimental.optionsBar} />
                 }
               </Container>
@@ -57,13 +58,37 @@ function App() {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col xs={12} md={6}>
             <div className="box__wrapper">
               <Container style={{ minHeight: '100%' }}>
                 {
                   (isLoading)
-                    ? <p>Loading.... </p>
+                    ? <SentimentalSpinner />
                     : <SentimentalBarChart data={data.airlines.data} options={data.airlines.options} />
+                }
+              </Container>
+            </div>
+          </Col>
+          <Col xs={12} md={6}>
+            <div className="box__wrapper">
+              <Container style={{ minHeight: '100%' }}>
+                {
+                  (isLoading)
+                    ? <SentimentalSpinner />
+                    : <SentimentalBarChart data={data.negative_test.data} options={data.negative_test.options} />
+                }
+              </Container>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+        <Col>
+            <div className="box__wrapper">
+              <Container style={{ minHeight: '100%' }}>
+                {
+                  (isLoading)
+                    ? <SentimentalSpinner />
+                    : <SentimentalBarChart data={data.null_values_from_columns.data} options={data.null_values_from_columns.options} />
                 }
               </Container>
             </div>

@@ -14,7 +14,9 @@ class SentimentalAnalysis(Resource):
     def get(self):
         data = {
             "sentimental": self.loader.get_sentimentals_of_all_airlines(),
-            "airlines": self.loader.get_airline_count()
+            "airlines": self.loader.get_airline_count(),
+            "negative_test": self.loader.get_negative_reason_count(),
+            "null_values_from_columns": self.loader.get_null_values_from_all_columns()
         }
         return jsonify(data)
 

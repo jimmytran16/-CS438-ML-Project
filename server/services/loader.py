@@ -1,4 +1,5 @@
 import os.path
+from flask.json import jsonify, load
 import pandas as pd
 
 # Class that will parse and return data from excel
@@ -81,7 +82,6 @@ class Loader:
                 airline_dict[airline] = airline_dict[airline] + 1
 
         for k, v in airline_dict.items():
-            print(f"name: {k} count {v}")
             labels.append(k + ' Airlines')
             data.append(v)
 
@@ -111,15 +111,102 @@ class Loader:
             }
         }
 
-        print(airline_dict)
-    # function to parse and return the data within the csv file
+    
 
+    # This function will keep count of the many different reasons why the tweet was considered a negative
+    def get_null_values_from_all_columns(self):
+        df = self._parse_csv()
+
+        labels = []
+        data = []
+
+        null_counts = {}
+
+        for col, row in df.items():
+            null_counts[col] = 0
+            for d in row:
+                if pd.isna(d) or pd.isnull(d):
+                    null_counts[col] = null_counts[col] + 1
+        
+                
+        for k,v in null_counts.items():
+            data.append(v)
+            labels.append(k)
+
+        return {
+            "data": {
+                "labels": labels,
+                "datasets": [
+                    {
+                        "label": 'Total',
+                        "data": data,
+                        "backgroundColor": 'rgba(106, 121, 112, 0.36)',
+                    },
+                ],
+            },
+            "options": {
+                "responsive": True,
+                "maintainAspectRatio": False,
+                "plugins": {
+                    "legend": {
+                        "position": 'top',
+                    },
+                    "title": {
+                        "display": True,
+                        "text": 'Null Values in Data set',
+                    },
+                },
+            }
+        }
+            
+    # function to parse and return the data within the csv file
     def _parse_csv(self):
         return pd.read_csv(os.path.dirname(__file__) + '/../Tweets.csv')
+
+    def get_negative_reason_count(self):
+        df = self._parse_csv()
+        
+        data = [int(df.negativereason.value_counts()[0]), int(df.negativereason.value_counts()[1]),
+                int(df.negativereason.value_counts()[2]), int(df.negativereason.value_counts()[3]),
+                int(df.negativereason.value_counts()[4]), int(df.negativereason.value_counts()[5]),
+                int(df.negativereason.value_counts()[6]), int(df.negativereason.value_counts()[7]),
+                int(df.negativereason.value_counts()[8]), int(df.negativereason.value_counts()[9])]
+
+        labels = ['Customer Service Issue', 'Late Flight', "Can't Tell",'Cancelled Flight', 'Lost Luggage',
+                  'Bad Flight', 'Flight Booking Problems','Flight Attendant Complaints',
+                  'longlines', 'Damaged Luggage']
+
+        return {
+            "data": {
+                "labels": labels,
+                "datasets": [
+                    {
+                        "label": 'Total',
+                        "data": data,
+                        "backgroundColor": 'rgba(40, 158, 81, 0.8)',
+                    },
+                ],
+            },
+            "options": {
+                "responsive": True,
+                "maintainAspectRatio": False,
+                "plugins": {
+                    "legend": {
+                        "position": 'top',
+                    },
+                    "title": {
+                        "display": True,
+                        "text": 'Negative Reasons Count',
+                    },
+                },
+            }
+        }
 
 
 if __name__ == '__main__':
 
     loader = Loader()
     # print(loader.get_sentimentals_of_all_airlines())
-    print(loader.get_airline_count())
+    # print(loader.get_airline_count())
+    # print(jsonify(loader.get_negative_reason_count()))
+    print(loader.get_null_values_from_all_columns())
