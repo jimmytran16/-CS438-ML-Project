@@ -250,7 +250,6 @@ class Loader:
             else:
                 negative_reasons[reason] = negative_reasons[reason] + 1
         
-        print(negative_reasons)
         for k,v in sorted(negative_reasons.items()):
             labels.append(k)
             data.append(v)

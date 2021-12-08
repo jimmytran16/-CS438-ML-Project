@@ -32,7 +32,16 @@ function App() {
       <div>
         <Navbar bg="light">
           <Container>
-            <Navbar.Brand>Airlines Sentimental Tweets Analysis</Navbar.Brand>
+            <Navbar.Brand href="#home">
+              <img
+                alt=""
+                src="https://th.bing.com/th/id/OIP.xwiswTbBjpb6KrQ8_H27QQAAAA?pid=ImgDet&rs=1"
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+              />{' '}
+              Airlines Sentimental Tweets Analysis
+            </Navbar.Brand>
           </Container>
         </Navbar>
         <div className="graph__wrapper">
@@ -49,6 +58,9 @@ function App() {
             <Route path='/negatives' element={<NegativeMetricsScreen />} />
           </Routes>
         </div>
+        <footer className="bg-light">
+          Made by: <i>Jimmy, Shreyansh, and Naveen</i>
+        </footer>
       </div>
     </BrowserRouter>
   );
