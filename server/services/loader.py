@@ -162,6 +162,34 @@ class Loader:
     # function to parse and return the data within the csv file
     def _parse_csv(self):
         return pd.read_csv(os.path.dirname(__file__) + '/../Tweets.csv')
+    
+    def get_accuracy_for_models(self):
+        return {
+            "data": {
+                "labels": ['Logistic Regression', 'Support Vector Machine'],
+                "datasets": [
+                    {
+                        "label": 'Percentage',
+                        "data": ['84','94'],
+                        "backgroundColor": 'rgba(255, 99, 132, 0.5)',
+                    },
+                ],
+            },
+            "options": {
+                "responsive": True,
+                "maintainAspectRatio": False,
+                "plugins": {
+                    "legend": {
+                        "position": 'top',
+                    },
+                    "title": {
+                        "display": True,
+                        "text": 'Airline Counts',
+                    },
+                },
+            }
+        }
+
 
     def get_negative_reason_count(self):
         df = self._parse_csv()

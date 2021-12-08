@@ -16,7 +16,8 @@ class SentimentalAnalysis(Resource):
             "sentimental": self.loader.get_sentimentals_of_all_airlines(),
             "airlines": self.loader.get_airline_count(),
             "negative_test": self.loader.get_negative_reason_count(),
-            "null_values_from_columns": self.loader.get_null_values_from_all_columns()
+            "null_values_from_columns": self.loader.get_null_values_from_all_columns(),
+            "accuracy": self.loader.get_accuracy_for_models()
         }
         return jsonify(data)
 
