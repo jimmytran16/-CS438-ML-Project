@@ -1,4 +1,7 @@
 import React from 'react';
+import { FaInfoCircle } from 'react-icons/fa';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +11,6 @@ import {
   Legend,
   Tooltip as ToolT
 } from 'chart.js';
-import { FaInfoCircle } from 'react-icons/fa';
-import { Tooltip, OverlayTrigger, Button } from 'react-bootstrap';
-import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
