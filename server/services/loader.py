@@ -1,5 +1,6 @@
 import os.path
 from flask.json import jsonify, load
+from collections import OrderedDict
 import pandas as pd
 
 # Class that will parse and return data from excel
@@ -122,6 +123,8 @@ class Loader:
 
         null_counts = {}
 
+        # looping through each column 
+        # within each column iteration, looping through all values of that column (row)
         for col, row in df.items():
             null_counts[col] = 0
             for d in row:
@@ -158,10 +161,6 @@ class Loader:
                 },
             }
         }
-            
-    # function to parse and return the data within the csv file
-    def _parse_csv(self):
-        return pd.read_csv(os.path.dirname(__file__) + '/../Tweets.csv')
     
     def get_accuracy_for_models(self):
         return {
@@ -171,7 +170,7 @@ class Loader:
                     {
                         "label": 'Percentage',
                         "data": ['84','94'],
-                        "backgroundColor": 'rgba(255, 99, 132, 0.5)',
+                        "backgroundColor": ['#87CEFA','#F5F5DC'],
                     },
                 ],
             },
@@ -184,7 +183,7 @@ class Loader:
                     },
                     "title": {
                         "display": True,
-                        "text": 'Airline Counts',
+                        "text": 'Machine Learning Model Accuracy',
                     },
                 },
             }
@@ -229,6 +228,65 @@ class Loader:
                 },
             }
         }
+    
+    # Get all the negative counts per category of a particular airline
+    def get_negative_reason_count_per_airline(self,airline):
+        # We want to loop through the rows of the csv
+        df = self._parse_csv()
+        # Filter out those that are not 'airline'
+        # REFERENCE : https://cmdlinetips.com/2018/02/how-to-subset-pandas-dataframe-based-on-values-of-a-column/#:~:text=One%20way%20to%20filter%20by%20rows%20in%20Pandas,subset%20the%20dataframe%20based%20on%20year%E2%80%99s%20value%202002.
+        filtered_cols = df[df.airline == airline]
+
+        labels = []
+        data = []
+
+        negative_reasons = {}
+
+        for reason in filtered_cols['negativereason']:
+            if pd.isna(reason) or pd.isnull(reason):
+                continue
+            elif reason not in negative_reasons:
+                negative_reasons[reason] = 1
+            else:
+                negative_reasons[reason] = negative_reasons[reason] + 1
+        
+        print(negative_reasons)
+        for k,v in sorted(negative_reasons.items()):
+            labels.append(k)
+            data.append(v)
+        
+        
+        return {
+            "data": {
+                "labels": labels,
+                "datasets": [
+                    {
+                        "label": 'Total',
+                        "data": data,
+                        "backgroundColor": ['#DEB887','#F0F8FF','#DA70D6','#708090','#20B2AA','#FFFAF0', '#4682B4', '#BC8F8F', '#F08080', '#87CEFA'],
+                    },
+                ],
+            },
+            "options": {
+                "responsive": True,
+                "maintainAspectRatio": False,
+                "plugins": {
+                    "legend": {
+                        "position": 'top',
+                    },
+                    "title": {
+                        "display": True,
+                        "text": f'Negative reasons for {airline}',
+                    },
+                },
+            }
+        }
+
+
+
+    # function to parse and return the data within the csv file
+    def _parse_csv(self):
+        return pd.read_csv(os.path.dirname(__file__) + '/../Tweets.csv') 
 
 
 if __name__ == '__main__':
@@ -237,4 +295,4 @@ if __name__ == '__main__':
     # print(loader.get_sentimentals_of_all_airlines())
     # print(loader.get_airline_count())
     # print(jsonify(loader.get_negative_reason_count()))
-    print(loader.get_null_values_from_all_columns())
+    print(loader.get_negative_reason_count_per_airline('Virgin America'))
