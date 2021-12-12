@@ -112,10 +112,55 @@ class Loader:
         }
 
         print(airline_dict)
-    # function to parse and return the data within the csv file
 
+    # function to get count of reasons for negative tweets
+    # will aggregrate the data set that is required for the chart
+    def get_negative_reason_count(self):
+        df = self._parse_csv()
+
+        y_axis = [df.negativereason.value_counts()[0], df.negativereason.value_counts()[1],
+                df.negativereason.value_counts()[2], df.negativereason.value_counts()[3],
+                df.negativereason.value_counts()[4], df.negativereason.value_counts()[5],
+                df.negativereason.value_counts()[6], df.negativereason.value_counts()[7],
+                df.negativereason.value_counts()[8], df.negativereason.value_counts()[9]]
+        labels = ['Customer Service Issue', 'Late Flight', 'Cant Tell','Cancelled Flight', 'Lost Luggage',
+                  'Bad Flight', 'Flight Booking Problems','Flight Attendant Complaints',
+                  'longlines', 'Damaged Luggage']
+
+        
+
+        return {
+            "data": {
+                "labels": labels,
+                "datasets": [
+                    {
+                        "label": 'Total',
+                        "data": [1,2,3,4,5,6,7,8,9,10],
+                        "backgroundColor": 'rgba(40, 158, 81, 0.8)',
+                    },
+                ],
+            },
+            "options": {
+                "responsive": True,
+                "maintainAspectRatio": False,
+                "plugins": {
+                    "legend": {
+                        "position": 'top',
+                    },
+                    "title": {
+                        "display": True,
+                        "text": 'Negative Reasons Count',
+                    },
+                },
+            }
+        }
+
+    
+    # function to parse and return the data within the csv file
     def _parse_csv(self):
         return pd.read_csv(os.path.dirname(__file__) + '/../Tweets.csv')
+
+    
 
 
 if __name__ == '__main__':

@@ -12,7 +12,9 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      axios.get(`https://enigmatic-hollows-91721.herokuapp.com/`)
+      //axios.get('https://127.0.0.1:5000/test/blah')
+      axios.get('https://enigmatic-hollows-91721.herokuapp.com/')
+        //https://enigmatic-hollows-91721.herokuapp.com/
       // axios.get(`http://localhost:5000/`)
         .then(res => {
           console.log(res.data)
@@ -64,6 +66,19 @@ function App() {
                   (isLoading)
                     ? <p>Loading.... </p>
                     : <SentimentalBarChart data={data.airlines.data} options={data.airlines.options} />
+                }
+              </Container>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="box__wrapper">
+              <Container style={{ minHeight: '100%' }}>
+                {
+                  (isLoading)
+                    ? <p>Loading.... </p>
+                    : <SentimentalBarChart data={data.negative.data} options={data.negative.options} />
                 }
               </Container>
             </div>
