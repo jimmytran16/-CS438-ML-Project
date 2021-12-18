@@ -169,7 +169,7 @@ class Loader:
                 "datasets": [
                     {
                         "label": 'Percentage',
-                        "data": ['84','94'],
+                        "data": ['90','94'],
                         "backgroundColor": ['#87CEFA','#F5F5DC'],
                     },
                 ],
