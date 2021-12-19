@@ -6,7 +6,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         p {
-            font-size: 20px;
+            font-size: 14px;
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
@@ -23,19 +23,6 @@
             height: 50%;
             width: 40%;
         }
-
-        /* .column {
-            float: left;
-            width: 50%;
-            height: 50%
-        } */
-
-        /* Clearfix (clear floats)
-        .row::after {
-            content: "";
-            clear: both;
-            display: table;
-        } */
 
         .center {
             display: block;
@@ -96,29 +83,31 @@
             <button onclick="window.open('https://github.com/jimmytran16/CS438-ML-Project/','_blank');"
                 class="btn btn-primary">Source Code</button>
         </section>
+
         <section class="section-container">
             <h2>About the project</h3>
-                <p>In this project we analyze user tweets about airline performance in the US. We clean and preprocess
-                    the data and finally train Machine learning models to analyze Sentiment of the tweets and return
-                    whether a tweet is positive, neutral or negative. The dataset was trained on two classifiers namely
-                    logistic regression, Support Vector Machines and compare them based on their accuracy,
-                    precision and F1 score.</p>
+                <p>In this project, we analyze user tweets about airline performance in the US. We clean and preprocess the data and finally 
+                    train Machine learning models to analyze Sentiment of the tweets and return whether a tweet is positive, neutral, or negative. 
+                    The dataset was trained on two classifiers namely logistic regression, Support Vector Machines, and compared based on their accuracy, 
+                    precision, and F1 score.</p>
         </section>
+
         <section class="section-container">
             <h2> Understanding the Dataset </h2>
-            <p>The dataset contains 14640 tweets and 15 features namely:
-                Tweet_id,
-                Airline_sentiment (positive/negative/neutral),
-                Airline_sentiment_confidence,
-                Negative reason,
-                Negative_reason_confidence,
-                Airline,
-                Name (Person who tweeted),
-                Retweet_count,
-                Text (tweet),
-                Tweet_created,
-                tweet_location
-            </p>
+            <p>The dataset contains 14640 tweets and 11 features namely: </p>
+            <ul>
+                <li>Tweet_id</li>
+                <li>Airline_sentiment (positive/negative/neutral)</li>
+                <li>Airline_sentiment_confidence</li>
+                <li>Negative reason</li>
+                <li>Negative_reason_confidence</li>
+                <li>Airline</li>
+                <li>Name (Person who tweeted)</li>
+                <li>Retweet_count</li>
+                <li>Text (tweet)</li>
+                <li>Tweet_created</li>
+                <li>tweet_location</li>
+            </ul>
             <div class="row">
                 <div class="col-6">
                     <img src="images/Null Values.png" alt="Null values in dataset">
@@ -133,7 +122,7 @@
                     <img src="images/Total tweet for each airline.png" alt="Null values in dataset">
                 </div>
                 <div class="col-6">
-                    <img src="images/Reason for negative tweets.png" alt="Null values in dataset">
+                    <img src="images/Negative Reasons - All.png" alt="Null values in dataset">
                 </div>
             </div>
 
@@ -182,6 +171,7 @@
                 </p>
             </div>
         </section>
+
         <section class="section-container">
             <h1>Machine Learning Models</h1>
             <div class="section-content">
@@ -260,7 +250,61 @@
             </div>
         </section>
 
-        <!-- <h2 id="set-up-environment">Set up environment</h2>
+        <section class="section-container">
+            <div class="section-content">
+                <h1 id="work-distrubution">Work Distrubution</h1>
+                <p>This is the table that demonstrates the shared work for this Machine Learning project</p>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Work</th>
+                        <th>Hours</th>
+                    </tr>
+                    <tr>
+                        <td>Shreyansh Dhandhukia</td>
+                        <td>
+                            <ul>
+                                <li>Parsing the data from the training data file to distribute to the machine
+                                    learning models</li>
+                                    <li>Text processing and data cleaning</li>
+                                    <li>Plotting learning curve</li>
+                                    <li>Tuninng Machine Learning Models</li>
+                                    <li>Wrote parsing function to parse training data to send to the UI for displaying</li>
+                                </ul>
+                        </td>
+                        <td>100 hours</td>
+                    </tr>   
+                    <tr>
+                        <td>Jimmy Tran</td>
+                        <td>
+                            <ul>
+                                <li>Implemented the UI, and server the data to the UI to render the metrics</li>
+                                <li>Data mining</li>
+                            </ul>
+                        </td>
+                        <td>100 hours</td>
+                    </tr>
+                    <tr>
+                        <td>Naveen Muthusamy</td>
+                        <td>
+                            <ul>
+                                <li>Data regularization</li>
+                                <li>Neural Network Implementation</li>
+                            </ul>
+                        </td>
+                        <td>100 hours</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
+
+
+
+<!-- <h2 id="set-up-environment">Set up environment</h2>
             <ul>
                 <li>Install Python into your computer https://www.python.org/downloads/</li>
                 <li>Install the python virtual environment (OPTIONAL)</li>
@@ -293,55 +337,3 @@
                 <pre
                     class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>  <span class="ex">python3</span> app.py</span></code></pre>
             </div> -->
-        <section class="section-container">
-            <div class="section-content">
-                <h1 id="work-distrubution">Work Distrubution</h1>
-                <p>This is the table that demonstrates the shared work for this Machine Learning project</p>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <th>Work</th>
-                        <th>Hours</th>
-                    </tr>
-                    <tr>
-                        <td>Shreyansh Dhandhukia</td>
-                        <td>
-                            <ul>
-                                <li>Parsing the data from the training data file to distribute to the machine
-                                    learning models</li>
-                                <li>This</li>
-                                <li>This</li>
-                            </ul>
-                        </td>
-                        <td>100 hours</td>
-                    </tr>
-                    <tr>
-                        <td>Jimmy Tran</td>
-                        <td>
-                            <ul>
-                                <li>Working on rendering the data used to train the ML models</li>
-                                <li>Creating the UI and server that sends the data to the UI to render the metrics
-                                </li>
-                                <li>This</li>
-                            </ul>
-                        </td>
-                        <td>100 hours</td>
-                    </tr>
-                    <tr>
-                        <td>Naveen Muthusamy</td>
-                        <td>
-                            <ul>
-                                <li>Data regularization</li>
-                                <li>This</li>
-                                <li>This</li>
-                            </ul>
-                        </td>
-                        <td>100 hours</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
-    </div>
-</body>
-
-</html>
