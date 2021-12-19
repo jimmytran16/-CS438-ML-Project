@@ -267,41 +267,35 @@
                 <img class="two" src="images/Performance of SVM.png" alt="Null values in dataset">
                 <img class="two" src="images/Confusion Matrix SVM.png" alt="Null values in dataset">
             </div>
+            <div class="section-content">
+                <h3>3. Neural Networks</h3>
+                <p>
+                    Neural networks take inspiration from the learning process occurring in human brains. They consists of an artificial network of functions, called parameters, which allows the computer to learn, and to fine tune itself, by analyzing new data. 
+                    Each parameter, sometimes also referred to as neurons, is a function which produces an output, after receiving one or multiple inputs. Those outputs are then passed to the next layer of neurons, which use them as inputs of their own function, and produce further outputs. 
+                    Those outputs are then passed on to the next layer of neurons, and so it continues until every layer of neurons have been considered, and the terminal neurons have received their input. Those terminal neurons then output the final result for the model.
+                </p>
+                <p>
+                    One of the major aspects of training your machine learning model is avoiding overfitting.
+                    Regularization, significantly reduces
+                    the variance of the model, without substantial increase in its bias. So, to avoid overfitting we
+                    tuned
+                    our model with different
+                    "hidden_layer_sizes=(8,8,8), activation='relu', solver='adam', max_iter=500". By
+                    training
+                    our Neural Network with these
+                    parameters we were able to acheive best accuracy.
+                </p>
+
+                <p> F1-score: 0.93 Acuracy: 0.93 </p>
+
+                <p>Learning curves with tuning and regularization</p>
+                <img class="two" src="images/Learning Curve - NN.png" alt="Null values in dataset">
+                <img class="two" src="images/Scalability - NN.png" alt="Null values in dataset"> <br>
+                <img class="two" src="images/Performance - NN.png" alt="Null values in dataset">
+                <img class="two" src="images/Confusion Matrix - NN.png" alt="Null values in dataset">
+            </div>
         </section>
 
-        <!-- <h2 id="set-up-environment">Set up environment</h2>
-            <ul>
-                <li>Install Python into your computer https://www.python.org/downloads/</li>
-                <li>Install the python virtual environment (OPTIONAL)</li>
-            </ul>
-            <div class="sourceCode" id="cb1">
-                <pre
-                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>  <span class="ex">pip3</span> install virtualenv</span></code></pre>
-            </div>
-            <ul>
-                <li>Inside the /server directory, set your virtual environment (OPTIONAL)</li>
-            </ul>
-            <div class="sourceCode" id="cb2">
-                <pre
-                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>  <span class="ex">python3</span> -m venv env</span>
-    <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-    <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="bu">source</span> env/bin/activate <span class="op">&lt;</span>-- for Mac</span>
-    <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="ex">./env/Scripts/Activate.ps1</span> <span class="op">&lt;</span>-- for Windows (issues with activiating: https://peter-whyte.com/ps1-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system-powershell/)</span></code></pre>
-            </div>
-            <ul>
-                <li>Install the required dependencies for the server</li>
-            </ul>
-            <div class="sourceCode" id="cb3">
-                <pre
-                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>  <span class="ex">pip3</span> install -r requirements.txt</span></code></pre>
-            </div>
-            <ul>
-                <li>Run the server</li>
-            </ul>
-            <div class="sourceCode" id="cb4">
-                <pre
-                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>  <span class="ex">python3</span> app.py</span></code></pre>
-            </div> -->
             <section class="section-container">
                 <div class="section-content">
                     <h1 id="work-distrubution">Resources</h1>
@@ -370,7 +364,8 @@
                         <td>
                             <ul>
                                 <li>Data regularization</li>
-                                <li>Implemented Neural Networking</li>
+                                <li>Neural Network Implementation</li>
+                                <li>Data balancing with SMOTE</li>
                             </ul>
                         </td>
                         <td>40 hours</td>
