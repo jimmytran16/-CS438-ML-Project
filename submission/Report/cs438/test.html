@@ -1,165 +1,347 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<style>
-    h1 {text-align: center;}
-html, body {
-  height: 100%;
-}
-img.two {
-    height: 50%;
-    width: 40%;
-}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        p {
+            font-size: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
 
-.column {
-  float: left;
-  width: 50%;
-  height: 50%
-}
+        html,
+        body {
+            height: 100%;
+        }
 
-/* Clearfix (clear floats) */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-.center {
-  display: block;
-  padding-top: 2%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-.button {
-  position: absolute;
-  background-color: #f44336;
-  text-decoration: none;
-  cursor: pointer;
-  display: inline-block;
-  left: 1000px;
-  top: 30px;
-}
+        img {
+            width: 100%;
+        }
 
-</style>
+        img.two {
+            height: 50%;
+            width: 40%;
+        }
+
+        /* .column {
+            float: left;
+            width: 50%;
+            height: 50%
+        } */
+
+        /* Clearfix (clear floats)
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        } */
+
+        .center {
+            display: block;
+            padding-top: 2%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .button {
+            position: absolute;
+            background-color: #f44336;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+            left: 1000px;
+            top: 30px;
+        }
+
+        .col-6 {
+            text-align: center;
+            align-self: center;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .section-container {
+            padding: 20px 0px;
+        }
+
+        .section-content {
+            padding-top: 40px;
+        }
+    </style>
 </head>
+
 <body>
-<h1 text-align ="center">US Airline Sentiment Analysis</h2>
-    <form>
-        <input type="button" class="button" onclick="window.location.href='https://airlines-sentimental.netlify.app/'" value="Our Website" />
-      </form>
-<h2>About the project</h3>
-<p>In this project we analyze user tweets about airline performance in the US. We clean and preprocess 
-    the data and finally train Machine learning models to analyze Sentiment of the tweets and return 
-    whether a tweet is positive, neutral or negative. The dataset was trained on two classifiers namely
-    logistic regression, Support Vector Machines and compare them based on their accuracy, 
-    precision and F1 score.</p>
+    <div class="container">
+        <h1 style="text-align: center;">US Airline Sentiment Analysis</h1>
+        <section style="text-align: center;">
+            <button onclick="window.open('https://airlines-sentimental.netlify.app/','_blank');"
+                class="btn btn-danger">Website</button>
+            <button onclick="window.open('https://github.com/jimmytran16/CS438-ML-Project/','_blank');"
+                class="btn btn-primary">Source Code</button>
+        </section>
+        <section class="section-container">
+            <h2>About the project</h3>
+                <p>In this project we analyze user tweets about airline performance in the US. We clean and preprocess
+                    the data and finally train Machine learning models to analyze Sentiment of the tweets and return
+                    whether a tweet is positive, neutral or negative. The dataset was trained on two classifiers namely
+                    logistic regression, Support Vector Machines and compare them based on their accuracy,
+                    precision and F1 score.</p>
+        </section>
+        <section class="section-container">
+            <h2> Understanding the Dataset </h2>
+            <p>The dataset contains 14640 tweets and 15 features namely:
+                Tweet_id,
+                Airline_sentiment (positive/negative/neutral),
+                Airline_sentiment_confidence,
+                Negative reason,
+                Negative_reason_confidence,
+                Airline,
+                Name (Person who tweeted),
+                Retweet_count,
+                Text (tweet),
+                Tweet_created,
+                tweet_location
+            </p>
+            <div class="row">
+                <div class="col-6">
+                    <img src="images/Null Values.png" alt="Null values in dataset">
+                </div>
+                <div class="col-6">
+                    <img src="images/Sentimental Doughnut Chart.png" alt="Null values in dataset">
+                </div>
+            </div>
 
-<h2> Understanding the Dataset </h2>
-<p>The dataset contains 14640 tweets and 15 features namely: 
-Tweet_id,
-Airline_sentiment (positive/negative/neutral),
-Airline_sentiment_confidence,
-Negative reason,
-Negative_reason_confidence,
-Airline,
-Name (Person who tweeted),
-Retweet_count,
-Text (tweet),
-Tweet_created,
-tweet_location
-</p>
-<div class = "row">
-    <div class = "column">
-        <img class="two" src="images/Null Values.png" alt="Null values in dataset">
+            <div class="row">
+                <div class="col-6">
+                    <img src="images/Total tweet for each airline.png" alt="Null values in dataset">
+                </div>
+                <div class="col-6">
+                    <img src="images/Reason for negative tweets.png" alt="Null values in dataset">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <img src="images/Negative Reasons - American.png" />
+                </div>
+                <div class="col-4">
+                    <img src="images/Negative Reasons - Delta.png" />
+                </div>
+                <div class="col-4">
+                    <img src="images/Negative Reasons - Southwest.png" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <img src="images/Negative Reasons - United.png" />
+                </div>
+                <div class="col-4">
+                    <img src="images/Negative Reasons - US Airways.png" />
+                </div>
+                <div class="col-4">
+                    <img src="images/Negative Reasons - Virgin America.png" />
+                </div>
+            </div>
+        </section>
+
+        <section class="section-container">
+            <h2>Architecture of System</h2>
+            <div class="section-content">
+                <img src="images/Architecture of System.png" alt="Null values in dataset">
+                <p>The system is a Client-Server architecture. We use React for the front-end and have currently hosted
+                    our
+                    system on netlify.</p>
+                <p>For the server we use flask as a web server to serve airline data to the client i.e. our browswer. To
+                    make the website available
+                    to all the users we have hosted the website on Heroku. The server's job is to parse the dataset and
+                    then
+                    send the data to client
+                    for visualization and also send it to the python file for preporcessing and training purpose. Here,
+                    we
+                    preprocess the data and
+                    send train three machine learning classifiers, namely Logistic Regression, Support Vector Machines
+                    and
+                    Neural networks.
+                </p>
+            </div>
+        </section>
+        <section class="section-container">
+            <h1>Machine Learning Models</h1>
+            <div class="section-content">
+                <h3>1. Logistic Regression</h3>
+                <p>Logistic Regression uses a decision threshold to to classify the dataset. The setting of the
+                    threshold
+                    value is a very important
+                    aspect of Logistic regression and is dependent on the classification problem itself. In our project
+                    we
+                    use multinomial logistic
+                    regression for this problem as it has more than two possible discrete outcomes(Positive, Negative,
+                    neutral). The model predicts
+                    the probabilities of the different possible outcomes of a categorically distributed dependent
+                    variable,
+                    given a set of independent
+                    variables.
+                </p>
+                <p>One of the major aspects of training your machine learning model is avoiding overfitting.
+                    Regularization,
+                    significantly reduces
+                    the variance of the model, without substantial increase in its bias.So to avoid the risk of
+                    overfitting
+                    in
+                    our model we performed regularization. Some of the regularization techniques used to address
+                    overfitting
+                    are L1(Lasso Regression)
+                    and L2 (Ridge Regression). For our model we used L2 regression as it adds “squared magnitude” of
+                    coefficient as penalty term to
+                    the loss function which lessens the overfitting for us significantly.
+                </p>
+                <p> F1-score: 0.98 Acuracy: 0.94 </p>
+                <p>Learning curves with tuning and regularization</p>
+                <img class="two" src="images/Learning curves LR with tuning.png" alt="Null values in dataset">
+                <img class="two" src="images/Scability of LR with parameter tuning.png" alt="Null values in dataset">
+                <br>
+                <img class="two" src="images/Performance of LR.png" alt="Null values in dataset">
+                <img class="two" src="images/Confusion Matrix LR with tuning.png" alt="Null values in dataset">
+            </div>
+
+            <div class="section-content">
+                <h3>2. Support Vector Machines (SVM)</h3>
+                <p>
+                    SVM is a simple Supervised Machine Learning algorithm used for mostly for classification. It is
+                    basically a representation of
+                    classes in a hyperplane in multi-dimensional space. SVM maps training examples to points in space so
+                    as
+                    to maximise the width
+                    of the gap between the two categories. New examples are then mapped into that same space and
+                    predicted
+                    to belong to a
+                    category based on which side of the gap they fall For multiclass classification, the same principle
+                    is
+                    utilized.
+                </p>
+                <p>
+                    One of the major aspects of training your machine learning model is avoiding overfitting.
+                    Regularization, significantly reduces
+                    the variance of the model, without substantial increase in its bias. So, to avoid overfitting we
+                    tuned
+                    our model with different
+                    "param_grid = {'C': [10, 100], 'gamma': [1,0.1,0.01],'kernel': ['rbf', 'poly', 'sigmoid']}". By
+                    training
+                    our SVM with these
+                    parameters we were able to find that C=100 and gamma=1 was the best possible combination of
+                    parameters
+                    which gives better accuracy.
+                </p>
+
+                <p> F1-score: 0.99 Acuracy: 0.95 </p>
+
+                <p>Learning curves with tuning and regularization</p>
+                <img class="two" src="images/Learning Curve SVM.png" alt="Null values in dataset">
+                <img class="two" src="images/Scability of SVM.png" alt="Null values in dataset"> <br>
+                <img class="two" src="images/Performance of SVM.png" alt="Null values in dataset">
+                <img class="two" src="images/Confusion Matrix SVM.png" alt="Null values in dataset">
+            </div>
+        </section>
+
+        <!-- <h2 id="set-up-environment">Set up environment</h2>
+            <ul>
+                <li>Install Python into your computer https://www.python.org/downloads/</li>
+                <li>Install the python virtual environment (OPTIONAL)</li>
+            </ul>
+            <div class="sourceCode" id="cb1">
+                <pre
+                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>  <span class="ex">pip3</span> install virtualenv</span></code></pre>
+            </div>
+            <ul>
+                <li>Inside the /server directory, set your virtual environment (OPTIONAL)</li>
+            </ul>
+            <div class="sourceCode" id="cb2">
+                <pre
+                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>  <span class="ex">python3</span> -m venv env</span>
+    <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
+    <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="bu">source</span> env/bin/activate <span class="op">&lt;</span>-- for Mac</span>
+    <span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="ex">./env/Scripts/Activate.ps1</span> <span class="op">&lt;</span>-- for Windows (issues with activiating: https://peter-whyte.com/ps1-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system-powershell/)</span></code></pre>
+            </div>
+            <ul>
+                <li>Install the required dependencies for the server</li>
+            </ul>
+            <div class="sourceCode" id="cb3">
+                <pre
+                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>  <span class="ex">pip3</span> install -r requirements.txt</span></code></pre>
+            </div>
+            <ul>
+                <li>Run the server</li>
+            </ul>
+            <div class="sourceCode" id="cb4">
+                <pre
+                    class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>  <span class="ex">python3</span> app.py</span></code></pre>
+            </div> -->
+        <section class="section-container">
+            <div class="section-content">
+                <h1 id="work-distrubution">Work Distrubution</h1>
+                <p>This is the table that demonstrates the shared work for this Machine Learning project</p>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Work</th>
+                        <th>Hours</th>
+                    </tr>
+                    <tr>
+                        <td>Shreyansh Dhandhukia</td>
+                        <td>
+                            <ul>
+                                <li>Parsing the data from the training data file to distribute to the machine
+                                    learning models</li>
+                                <li>This</li>
+                                <li>This</li>
+                            </ul>
+                        </td>
+                        <td>100 hours</td>
+                    </tr>
+                    <tr>
+                        <td>Jimmy Tran</td>
+                        <td>
+                            <ul>
+                                <li>Working on rendering the data used to train the ML models</li>
+                                <li>Creating the UI and server that sends the data to the UI to render the metrics
+                                </li>
+                                <li>This</li>
+                            </ul>
+                        </td>
+                        <td>100 hours</td>
+                    </tr>
+                    <tr>
+                        <td>Naveen Muthusamy</td>
+                        <td>
+                            <ul>
+                                <li>Data regularization</li>
+                                <li>This</li>
+                                <li>This</li>
+                            </ul>
+                        </td>
+                        <td>100 hours</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
     </div>
-    <div class = "column">
-        <img class="two" src="images/Sentiment Tweets.png" alt="Null values in dataset">
-    </div>
-</div>
-
-<div class = "row">
-    <div class = "column">
-        <img class="two" src="images/Total tweet for each airline.png" alt="Null values in dataset">
-    </div>
-    <div class = "column">
-        <img height="220" src="images/Reason for negative tweets.png" alt="Null values in dataset">
-    </div>
-</div>
-<img height="800" width = "800" class = "center" src="images/Negative tweets for each airline.png" alt="Null values in dataset">
-
-<h2>Architecture of System</h2>
-<img class = "two" src="images/Architecture of System.png" alt="Null values in dataset">
-<p>The system is a Client-Server architecture. We use React for the front-end and have currently hosted our system on netlify.</p>
-<p>For the server we use flask as a web server to serve airline data to the client i.e. our browswer. To make the website available
-    to all the users we have hosted the website on Heroku. The server's job is to parse the dataset and then send the data to client 
-    for visualization and also send it to the python file for preporcessing and training purpose. Here, we preprocess the data and 
-    send train three machine learning classifiers, namely Logistic Regression, Support Vector Machines and Neural networks.
-</p>
-
-
-<h2>Machine Learning Models</h2>
-<h3>1. Logistic Regression</h3>
-<p>Logistic Regression uses a decision threshold to to classify the dataset. The setting of the threshold value is a very important 
-    aspect of Logistic regression and is dependent on the classification problem itself. In our project we use multinomial logistic 
-    regression for this problem as it has more than two possible discrete outcomes(Positive, Negative, neutral). The model predicts 
-    the probabilities of the different possible outcomes of a categorically distributed dependent variable, given a set of independent 
-    variables.
-</p>
-<p>One of the major aspects of training your machine learning model is avoiding overfitting. Regularization, significantly reduces 
-    the variance of the model, without substantial increase in its bias.So to avoid the risk of overfitting in
-    our model we performed regularization. Some of the regularization techniques used to address overfitting are L1(Lasso Regression)
-    and L2 (Ridge Regression). For our model we used L2 regression as it adds “squared magnitude” of coefficient as penalty term to 
-    the loss function which lessens the overfitting for us significantly.
-</p>
-<p> F1-score: 0.98    Acuracy: 0.94 </p>
-<p>Learning curves with tuning and regularization</p>
-<img class = "two" src="images/Learning curves LR with tuning.png" alt="Null values in dataset">
-<img class = "two" src="images/Scability of LR with parameter tuning.png" alt="Null values in dataset"> <br>
-<img class = "two" src="images/Performance of LR.png" alt="Null values in dataset">
-<img class = "two" src="images/Confusion Matrix LR with tuning.png" alt="Null values in dataset">
-
-<h3>2. Support Vector Machines (SVM)</h3>
-<p>
-    SVM is a simple Supervised Machine Learning algorithm used for mostly for classification. It is basically a representation of 
-    classes in a hyperplane in multi-dimensional space. SVM maps training examples to points in space so as to maximise the width 
-    of the gap between the two categories.  New examples are then mapped into that same space and predicted to belong to a 
-    category based on which side of the gap they fall For multiclass classification, the same principle is utilized.
-</p>
-<p>
-    One of the major aspects of training your machine learning model is avoiding overfitting. Regularization, significantly reduces 
-    the variance of the model, without substantial increase in its bias. So, to avoid overfitting we tuned our model with different 
-    "param_grid = {'C': [10, 100], 'gamma': [1,0.1,0.01],'kernel': ['rbf', 'poly', 'sigmoid']}". By training our SVM with these 
-    parameters we were able to find that C=100 and gamma=1 was the best possible combination of parameters which gives better accuracy. 
-</p>
-
-<p> F1-score: 0.99    Acuracy: 0.95 </p>
-
-<p>Learning curves with tuning and regularization</p>
-<img class = "two" src="images/Learning Curve SVM.png" alt="Null values in dataset">
-<img class = "two" src="images/Scability of SVM.png" alt="Null values in dataset"> <br>
-<img class = "two" src="images/Performance of SVM.png" alt="Null values in dataset">
-<img class = "two" src="images/Confusion Matrix SVM.png" alt="Null values in dataset">
-
-<h2 id="set-up-environment">Set up environment</h2>
-<ul>
-<li>Install Python into your computer https://www.python.org/downloads/</li>
-<li>Install the python virtual environment (OPTIONAL)</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>  <span class="ex">pip3</span> install virtualenv</span></code></pre></div>
-<ul>
-<li>Inside the /server directory, set your virtual environment (OPTIONAL)</li>
-</ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>  <span class="ex">python3</span> -m venv env</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>  <span class="bu">source</span> env/bin/activate <span class="op">&lt;</span>-- for Mac</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>  <span class="ex">./env/Scripts/Activate.ps1</span> <span class="op">&lt;</span>-- for Windows (issues with activiating: https://peter-whyte.com/ps1-cannot-be-loaded-because-running-scripts-is-disabled-on-this-system-powershell/)</span></code></pre></div>
-<ul>
-<li>Install the required dependencies for the server</li>
-</ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>  <span class="ex">pip3</span> install -r requirements.txt</span></code></pre></div>
-<ul>
-<li>Run the server</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>  <span class="ex">python3</span> app.py</span></code></pre></div>
 </body>
+
 </html>
