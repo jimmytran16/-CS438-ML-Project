@@ -68,7 +68,7 @@ class Loader:
         }
 
     # function to get airline count data
-    # will aggregrate the data set that is required for the chart
+    # Will aggregrate the data set that is required for the chart
     def get_airline_count(self):
         df = self._parse_csv()
 
@@ -162,6 +162,7 @@ class Loader:
             }
         }
     
+    # This function will return the accuracy percentage for each of the Machine Learning models
     def get_accuracy_for_models(self):
         return {
             "data": {
@@ -189,7 +190,7 @@ class Loader:
             }
         }
 
-
+    # This function will get the negative reason counts for each of the airlines
     def get_negative_reason_count(self):
         df = self._parse_csv()
         
