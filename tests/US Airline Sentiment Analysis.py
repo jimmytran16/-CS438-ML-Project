@@ -13,6 +13,7 @@ from sklearn.model_selection import train_test_split # Split Data
 from imblearn.over_sampling import SMOTE # Handling Imbalanced
 
 # Model Building
+from sklearn.model_selection import GridSearchCV
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
@@ -212,11 +213,6 @@ x_sm,y_sm = smote.fit_resample(X_final,y)
 X_train , X_test , y_train , y_test = train_test_split(x_sm , y_sm , test_size=0.2)
 X_train , X_val , y_train , y_val = train_test_split(X_train , y_train , test_size=0.25)
 
-LR = LogisticRegression(penalty = 'l2', C = 500,random_state = 0)
-LR.fit(X_train,y_train)
-LR_prediction =  LR.predict(X_val)
-print(accuracy_score(LR_prediction,y_val))
-
 def plot_learning_curve(
     estimator,
     title,
@@ -370,50 +366,71 @@ plot_learning_curve(LogisticRegression(penalty = 'l2', C = 500,random_state = 0)
 plt.show()
 
 '''
+    Logistic Regression
+'''
+LR = LogisticRegression(penalty = 'l2', C = 500,random_state = 0)
+LR.fit(X_train,y_train)
+LR_prediction =  LR.predict(X_val)
+print(accuracy_score(LR_prediction,y_val))
+
+'''
    Visualize model performance
 '''
 cr = classification_report(y_val, LR_prediction)
 print("Classification Report Logistic Regression:\n----------------------\n", cr)
 cm = confusion_matrix(y_test,LR_prediction)
 
-##'''
-##   Plot confusion matrix
-##'''
-##plt.figure(figsize=(8,6))
-##sentiment_classes = ['Negative', 'Neutral', 'Positive']
-##sns.heatmap(cm, cmap=plt.cm.Blues, annot=True, fmt='d', 
-##            xticklabels=sentiment_classes,
-##            yticklabels=sentiment_classes)
-##plt.title('Confusion matrix', fontsize=16)
-##plt.xlabel('Actual label', fontsize=12)
-##plt.ylabel('Predicted label', fontsize=12)
-##plt.show()
+'''
+   Plot confusion matrix
+'''
+plt.figure(figsize=(8,6))
+sentiment_classes = ['Negative', 'Neutral', 'Positive']
+sns.heatmap(cm, cmap=plt.cm.Blues, annot=True, fmt='d', 
+            xticklabels=sentiment_classes,
+            yticklabels=sentiment_classes)
+plt.title('Confusion matrix', fontsize=16)
+plt.xlabel('Actual label', fontsize=12)
+plt.ylabel('Predicted label', fontsize=12)
+plt.show()
 
-##svm = SVC()
-##svm.fit(X_train,y_train)
-##svm_prediction =  svm.predict(X_test)
-##print(accuracy_score(svm_prediction,y_test))
+######################################################### SVM #########################################################
 
-##
-##'''
-##   Visualize model performance
-##'''
-##cr = classification_report(y_test, svm_prediction)
-##print("Classification Report SVM:\n----------------------\n", cr)
-##cm = confusion_matrix(y_test,svm_prediction)
-##
-##
-##'''
-##   Plot confusion matrix
-##'''
-##plt.figure(figsize=(8,6))
-##sentiment_classes = ['Negative', 'Neutral', 'Positive']
-##sns.heatmap(cm, cmap=plt.cm.Blues, annot=True, fmt='d', 
-##            xticklabels=sentiment_classes,
-##            yticklabels=sentiment_classes)
-##plt.title('Confusion matrix', fontsize=16)
-##plt.xlabel('Actual label', fontsize=12)
-##plt.ylabel('Predicted label', fontsize=12)
-##plt.show()
+
+
+##param_grid = {'C': [10, 100], 'gamma': [1,0.1,0.01],'kernel': ['rbf', 'poly', 'sigmoid']}
+##grid = GridSearchCV(SVC(),param_grid,refit=True,verbose=2)
+##grid.fit(X_train,y_train)
+##print(grid.best_estimator_)
+
+title = r"Learning Curves (Support Vector Machines)"
+fig, axes = plt.subplots(3, 2, figsize=(10, 15))
+plot_learning_curve(SVC(C=100,gamma=1),title, x_sm, y_sm, axes=axes[:, 1], ylim=(0.7, 1.01), cv=5, n_jobs=4)
+plt.show()
+
+svm = SVC(C=100,gamma=1)
+svm.fit(X_train,y_train)
+svm_prediction =  svm.predict(X_val)
+print(accuracy_score(svm_prediction,y_val))
+
+'''
+   Visualize model performance
+'''
+cr = classification_report(y_val, svm_prediction)
+print("Classification Report SVM:\n----------------------\n", cr)
+cm = confusion_matrix(y_test,svm_prediction)
+
+
+'''
+   Plot confusion matrix
+'''
+plt.figure(figsize=(8,6))
+sentiment_classes = ['Negative', 'Neutral', 'Positive']
+sns.heatmap(cm, cmap=plt.cm.Blues, annot=True, fmt='d', 
+            xticklabels=sentiment_classes,
+            yticklabels=sentiment_classes)
+plt.title('Confusion matrix', fontsize=16)
+plt.xlabel('Actual label', fontsize=12)
+plt.ylabel('Predicted label', fontsize=12)
+plt.show()
 
 
