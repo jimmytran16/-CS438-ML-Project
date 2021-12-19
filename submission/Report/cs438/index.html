@@ -95,6 +95,8 @@
                 class="btn btn-danger">Website</button>
             <button onclick="window.open('https://github.com/jimmytran16/CS438-ML-Project/','_blank');"
                 class="btn btn-primary">Source Code</button>
+            <button onclick="window.open('https://docs.google.com/presentation/d/1ftBJrxIIhHKLs-FV0p_4uRGDWso7vUaaqgMNL7o9N48/edit?usp=sharing','_blank');"
+                class="btn btn-warning">Presentation</button>
         </section>
         <section class="section-container">
             <h2>About the project</h3>
@@ -173,7 +175,7 @@
             <h2>Architecture of System</h2>
             <div class="section-content">
                 <img src="images/Architecture of System.png" alt="Null values in dataset">
-                <p>This web application that we created for this ML project is a Client-Server architecture. We use
+                <p>This web application that we created for this ML project is a Clent-Server architecture. We use
                     React for
                     the front-end and have currently hosted our system on netlify.</p>
                 <p>For the server we use flask as a web server to serve airline data to the client i.e. our browser. To
@@ -181,11 +183,11 @@
                     to all the users we have hosted the website on Heroku. The server's job is to parse the dataset and
                     then
                     send the data to client
-                    for visualization and also send it to the python file for preporcessing and training purpose. Here,
-                    we preprocess the data and
-                    send the training data sets to the three machine learning classifiers, namely Logistic Regression, Support Vector Machines
-                    and
-                    Neural networks.
+                    for visualization. We are using the library pandas in order to parse our dataset that is coming from the CSV file. 
+                    We are also sending the data to the python file <i>(process.py)</i> for preporcessing and training purposes. Here,
+                    we preprocess the data and send the training data sets to the three machine learning classifiers, namely Logistic Regression, 
+                    Support Vector Machines and Neural networks, using the Sklearn framework (<a href="https://scikit-learn.org/stable/index.html" target="_blank">here</a>) to train our Machine learning models and well as 
+                    cleaning the dataset.
                 </p>
             </div>
         </section>
@@ -300,6 +302,34 @@
                 <pre
                     class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>  <span class="ex">python3</span> app.py</span></code></pre>
             </div> -->
+            <section class="section-container">
+                <div class="section-content">
+                    <h1 id="work-distrubution">Resources</h1>
+                    <p>This is a list of resources we used for creating this project</p>
+                    <table>
+                        <tr>
+                            <th>Description</th>
+                            <th>Link</th>
+                        </tr>
+                        <tr>
+                            <td><b>Sklearn</b> - A Python framework used for training Machine Learning Models</td>
+                            <td><a href="https://scikit-learn.org/stable/index.html" target="_blank">https://scikit-learn.org/stable/index.html</a></td>
+                        </tr>
+                        <tr>
+                            <td><b>Pandas</b> - A Python library used for parsing the training data set from CSV file</td>
+                            <td><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html" target="_blank">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html</a></td>
+                        </tr>
+                        <tr>
+                            <td><b>Flask</b> - A Python framework used as a web server to serve data to the UI for data visualization</td>
+                            <td><a href="https://flask.palletsprojects.com/en/2.0.x/" target="_blank">https://flask.palletsprojects.com/en/2.0.x/</a></td>
+                        </tr>
+                        <tr>
+                            <td><b>React.js</b> - A Javascript framework used as the front end to render the data visualization</td>
+                            <td><a href="https://reactjs.org/docs/getting-started.html" target="_blank">https://reactjs.org/docs/getting-started.html</a></td>
+                        </tr> 
+                    </table>
+                </div>
+            </section>
         <section class="section-container">
             <div class="section-content">
                 <h1 id="work-distrubution">Work Distrubution</h1>
@@ -318,6 +348,7 @@
                                     learning models</li>
                                 <li>Text processing and data cleaning</li>
                                 <li>Plotting learning curve</li>
+                                <li>Created a component in the UI to retrieve data from the server to render the graphs</li>
                                 <li>Tuninng Machine Learning Models</li>
                             </ul>
                         </td>
@@ -327,8 +358,9 @@
                         <td>Jimmy Tran</td>
                         <td>
                             <ul>
-                                <li>Implemented the UI, and server the data to the UI to render the metrics</li>
+                                <li>Implemented the web application's UI, using React/Javascript</li>
                                 <li>Wrote parsing functionality to parse training data set for sending to UI for displaying and for data processing</li>
+                                <li>Created the server that feeds the data to the UI</li>
                             </ul>
                         </td>
                         <td>40 hours</td>
