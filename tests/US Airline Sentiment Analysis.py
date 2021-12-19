@@ -1,3 +1,13 @@
+# Import required libraries
+from sklearn.neural_network import MLPClassifier
+from sklearn.neural_network import MLPRegressor
+from sklearn.metrics import RocCurveDisplay
+
+# Import necessary modules
+from sklearn.metrics import mean_squared_error
+from math import sqrt
+from sklearn.metrics import r2_score
+
 # Basic Operation
 import pandas as pd
 import numpy as np
@@ -209,6 +219,8 @@ X_final =  tfid.fit_transform(X)
 smote = SMOTE()
 x_sm,y_sm = smote.fit_resample(X_final,y)
 
+print ("X_SM size: ", x_sm.shape)
+
 # Split Data into train & test 
 X_train , X_test , y_train , y_test = train_test_split(x_sm , y_sm , test_size=0.2)
 X_train , X_val , y_train , y_val = train_test_split(X_train , y_train , test_size=0.25)
@@ -230,58 +242,10 @@ def plot_learning_curve(
 
     Parameters
     ----------
-    estimator : estimator instance
-        An estimator instance implementing `fit` and `predict` methods which
-        will be cloned for each validation.
+    estimator : estimator instance,title : str, X : array-like of shape (n_samples, n_features),y : array-like of shape (n_samples) or (n_samples, n_features)
+    axes : array-like of shape (3,), default=None, ylim : tuple of shape (2,), default=None, cv : int, cross-validation generator or an iterable, default=None 
+    n_jobs : int or None, default=None, train_sizes : array-like of shape (n_ticks,)
 
-    title : str
-        Title for the chart.
-
-    X : array-like of shape (n_samples, n_features)
-        Training vector, where ``n_samples`` is the number of samples and
-        ``n_features`` is the number of features.
-
-    y : array-like of shape (n_samples) or (n_samples, n_features)
-        Target relative to ``X`` for classification or regression;
-        None for unsupervised learning.
-
-    axes : array-like of shape (3,), default=None
-        Axes to use for plotting the curves.
-
-    ylim : tuple of shape (2,), default=None
-        Defines minimum and maximum y-values plotted, e.g. (ymin, ymax).
-
-    cv : int, cross-validation generator or an iterable, default=None
-        Determines the cross-validation splitting strategy.
-        Possible inputs for cv are:
-
-          - None, to use the default 5-fold cross-validation,
-          - integer, to specify the number of folds.
-          - :term:`CV splitter`,
-          - An iterable yielding (train, test) splits as arrays of indices.
-
-        For integer/None inputs, if ``y`` is binary or multiclass,
-        :class:`StratifiedKFold` used. If the estimator is not a classifier
-        or if ``y`` is neither binary nor multiclass, :class:`KFold` is used.
-
-        Refer :ref:`User Guide <cross_validation>` for the various
-        cross-validators that can be used here.
-
-    n_jobs : int or None, default=None
-        Number of jobs to run in parallel.
-        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.
-        ``-1`` means using all processors. See :term:`Glossary <n_jobs>`
-        for more details.
-
-    train_sizes : array-like of shape (n_ticks,)
-        Relative or absolute numbers of training examples that will be used to
-        generate the learning curve. If the ``dtype`` is float, it is regarded
-        as a fraction of the maximum size of the training set (that is
-        determined by the selected validation method), i.e. it has to be within
-        (0, 1]. Otherwise it is interpreted as absolute sizes of the training
-        sets. Note that for classification the number of samples usually have
-        to be big enough to contain at least one sample from each class.
-        (default: np.linspace(0.1, 1.0, 5))
     """
     if axes is None:
         _, axes = plt.subplots(1, 3, figsize=(20, 5))
@@ -360,6 +324,15 @@ def plot_learning_curve(
 
     return plt
 
+"""
+    To tune the parameters of Logistic Regression used validation set 
+"""
+##param_grid = {'penalty': ['l1', 'l2'],C=[10,500]}
+##grid = GridSearchCV(LogisticRegression(),param_grid,refit=True,verbose=2)
+##grid.fit(X_val,y_val)
+##print(grid.best_estimator_)
+
+
 title = r"Learning Curves (Logistic Regression)"
 fig, axes = plt.subplots(3, 2, figsize=(10, 15))
 plot_learning_curve(LogisticRegression(penalty = 'l2', C = 500,random_state = 0),title, x_sm, y_sm, axes=axes[:, 1], ylim=(0.7, 1.01), cv=5, n_jobs=4)
@@ -370,18 +343,18 @@ plt.show()
 '''
 LR = LogisticRegression(penalty = 'l2', C = 500,random_state = 0)
 LR.fit(X_train,y_train)
-LR_prediction =  LR.predict(X_val)
-print(accuracy_score(LR_prediction,y_val))
+LR_prediction =  LR.predict(X_test)
+print(accuracy_score(LR_prediction,y_test))
 
 '''
-   Visualize model performance
+   Visualize model performance Logistic Regression
 '''
-cr = classification_report(y_val, LR_prediction)
+cr = classification_report(y_test, LR_prediction)
 print("Classification Report Logistic Regression:\n----------------------\n", cr)
 cm = confusion_matrix(y_test,LR_prediction)
 
 '''
-   Plot confusion matrix
+   Plot confusion matrix Logistic Regression
 '''
 plt.figure(figsize=(8,6))
 sentiment_classes = ['Negative', 'Neutral', 'Positive']
@@ -393,13 +366,12 @@ plt.xlabel('Actual label', fontsize=12)
 plt.ylabel('Predicted label', fontsize=12)
 plt.show()
 
-######################################################### SVM #########################################################
-
-
-
+"""
+    To tune the parameters of SVM used validation set 
+"""
 ##param_grid = {'C': [10, 100], 'gamma': [1,0.1,0.01],'kernel': ['rbf', 'poly', 'sigmoid']}
 ##grid = GridSearchCV(SVC(),param_grid,refit=True,verbose=2)
-##grid.fit(X_train,y_train)
+##grid.fit(X_val,y_val)
 ##print(grid.best_estimator_)
 
 title = r"Learning Curves (Support Vector Machines)"
@@ -409,13 +381,13 @@ plt.show()
 
 svm = SVC(C=100,gamma=1)
 svm.fit(X_train,y_train)
-svm_prediction =  svm.predict(X_val)
-print(accuracy_score(svm_prediction,y_val))
+svm_prediction =  svm.predict(X_test)
+print(accuracy_score(svm_prediction,y_test))
 
 '''
    Visualize model performance
 '''
-cr = classification_report(y_val, svm_prediction)
+cr = classification_report(y_test, svm_prediction)
 print("Classification Report SVM:\n----------------------\n", cr)
 cm = confusion_matrix(y_test,svm_prediction)
 
@@ -433,4 +405,38 @@ plt.xlabel('Actual label', fontsize=12)
 plt.ylabel('Predicted label', fontsize=12)
 plt.show()
 
+
+title = r"Learning Curves (Neural Network)"
+fig, axes = plt.subplots(3, 2, figsize=(10, 15))
+plot_learning_curve(MLPClassifier(hidden_layer_sizes=(8,8,8), activation='relu', solver='adam', max_iter=500),title, x_sm, y_sm, axes=axes[:, 1], ylim=(0.7, 1.01), cv=5, n_jobs=4)
+plt.show()
+
+'''
+   Neural Networks
+'''
+# Building, Predicting, and Evaluating the Neural Network Model
+mlp = MLPClassifier(hidden_layer_sizes=(8,8,8), activation='relu', solver='adam', max_iter=500)
+mlp.fit(X_train,y_train)
+mlp_prediction = mlp.predict(X_test)
+
+'''
+   Visualize model performance
+'''
+cr = classification_report(y_test, mlp_prediction)
+print("Classification Report SVM:\n----------------------\n", cr)
+cm = confusion_matrix(y_test,mlp_prediction)
+
+'''
+   Plot confusion matrix
+'''
+
+plt.figure(figsize=(8,6))
+sentiment_classes = ['Negative', 'Neutral', 'Positive']
+sns.heatmap(cm, cmap=plt.cm.Blues, annot=True, fmt='d', 
+            xticklabels=sentiment_classes,
+            yticklabels=sentiment_classes)
+plt.title('Confusion matrix', fontsize=16)
+plt.xlabel('Actual label', fontsize=12)
+plt.ylabel('Predicted label', fontsize=12)
+plt.show()
 
