@@ -110,8 +110,23 @@
                 <p>In this project we analyzed user tweets about airline performance in the US. We cleaned and preprocessed
                     the data and finally train Machine learning models to analyze Sentiment of the tweets and return
                     whether a tweet is positive, neutral or negative. The dataset was trained on three classifiers namely
-                    logistic regression, Support Vector Machines and Neural networks. Later we compared them based on their accuracy,
+                    logistic regression, Support Vector Machines and Neural networks. Later we plotted learning curves, 
+                    performance curves and compared them based on their accuracy,
                     precision and F1 score.</p>
+        </section>
+        <section class="section-container">
+            <div class="section-content">
+                <h1>Why do we need Sentiment Analysis?</h1>
+                <p>1. We need it to enhance the customer service, as we need to learn what customers are happy about and what 
+                    frustrates them.  </p>
+                <p>2. By Sentiment analysis we can improve products and services given to the customer and also fix the 
+                    issue and bugs present in the current product.  </p>
+                <p>3. Using Sentiment Analysis one can optimize the marketing strategy so as to implement which steps to 
+                    boost the sales of the company.
+                </p>
+                <p>4. With Sentiment Analysis one can monitor the brand reputation of the firm.</p>
+                
+            </div>
         </section>
         <section class="section-container">
             <h1> Understanding the Dataset </h1>
@@ -302,7 +317,55 @@
                 <img class="two" src="images/Confusion Matrix - NN.png" alt="Null values in dataset">
             </div>
         </section>
+        <section class="section-container">
+            <div class="section-content">
+                <h1>Talking about the models</h1>
+                <p>1. After succesfully implementing all the three models we observed that, the accuracy of the tuned Support Vector
+                    Machines is even better than neural networks without regularization and Logistic Regression with Regularization
+                    and parameter tuning. 
+                </p> 
+                <p>2. After tuning the Logistic Regression the accuracy of the model shoot from 90% to 94% which clearly describes
+                    the importance of hyperparameter tuning.
+                </p> 
+                <p>3. The accuracy of the SVM after tuning shoot to 95% from 94%.</p>
+                <p>4. We also plotted the accuracy scores of all the three models, and according to the plots the accuracy of the
+                    model for cross-validation set increases as the number of cross-validation dataset increases. 
+                </p>
+                <p>5. We also plotted the performance of the model graph which is a plot between score and fit_times
+                    (Times spent for fitting in seconds.). This activity can be crucial when 
+                    the user is still trying to optimize the model and make it production ready.</p>
+                <p>6. Lastly, we also plotted confusion matrix to viusally understand the comparison of values like 
+                    True Positives, False Positives, True Negatives and False Negatives and visually observed that 
+                    in our implementation Tuned SVM was the most accurate and robust model out of all other models.
+                </p> 
+            </div>
+        </section>
+        <section class="section-container">
+            <div class="section-content">
+                <h1>Challenges Faced</h1>
+                <p>1. One of the major challenge we faced was of model biasing as we had less number of tweets for positive and
+                    neutral sentiments. However, we then searched through the web for different techniques used to handle 
+                    data imbalance and implemented <b>Synthetic Minority Oversampling Technique, 
+                        or SMOTE </b> in our project. </p>
+                <p>2. The second challenge which we faced was to setup up the configurations for the production server to host 
+                    the website properly so as to make it available to everyone during our class presentation.  </p>
+                <p>3. The third challenge was to create an algorithm to be able to structure the training data set from the CSV 
+                    in order to properly satisfy what the front end is expecting</p>
+                <p>4. Lastly learning about the SKLearn framework to successfully implement the Machine Learning models.</p>
 
+            </div>
+        </section>
+        <section class="section-container">
+            <div class="section-content">
+                <h1>Error Analysis</h1>
+                <p>1. One of the reason of facing error in preditcion may be; if a user tweets something sarcastic. A sarcasm
+                    may not count in negative word and the classifier may detect it as a positive or a neutral tweet.
+                </p>
+                <p>2. Some of the words can be positive and negative based on the context of language. So, traditional ML models
+                    may not be able to detect it.
+                </p>
+            </div>
+        </section>
             <section class="section-container">
                 <div class="section-content">
                     <h1 id="work-distrubution">Resources</h1>
@@ -331,6 +394,7 @@
                     </table>
                 </div>
             </section>
+            
         <section class="section-container">
             <div class="section-content">
                 <h1 id="work-distrubution">Work Distrubution</h1>
